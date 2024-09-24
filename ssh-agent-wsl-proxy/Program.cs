@@ -56,7 +56,7 @@ async Task NamedPipeProxy()
 async Task SocketProxyServer()
 {
     // unix socket path 
-    var path = args.Length > 0 ? args[0] : @"ssh-agent.socket";
+    var path = args.Length > 0 ? args[0] : (Environment.GetEnvironmentVariable("SSH_AUTH_SOCK") ?? @"ssh-agent.socket");
     var endpoint = new UnixDomainSocketEndPoint(path);
     // create unix domain server socket
     using var server = new Socket(AddressFamily.Unix, SocketType.Stream, ProtocolType.Unspecified);
