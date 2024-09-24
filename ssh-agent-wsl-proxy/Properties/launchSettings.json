@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ssh-agent-wsl-proxy": {
+      "commandName": "Project",
+      "commandLineArgs": ""
+    }
+  }
+}
