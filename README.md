@@ -27,6 +27,12 @@ SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 export SSH_AUTH_SOCK
 ```
 
+### Enable SystemD user service
+
+```
+sudo systemctl restart user@$(id -u).service
+```
+
 ### Create SystemD user service
 
 ```
