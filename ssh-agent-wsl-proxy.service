@@ -1,0 +1,11 @@
+[Unit]
+Description=SSH agent WSL proxy
+
+[Service]
+Type=simple
+Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
+WorkingDirectory=/home/uroot/ssh-agent-wsl-proxy
+ExecStart=dotnet /home/uroot/ssh-agent-wsl-proxy/ssh-agent-wsl-proxy.dll
+
+[Install]
+WantedBy=default.target
