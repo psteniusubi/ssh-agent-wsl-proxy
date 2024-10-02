@@ -54,12 +54,10 @@ jobs:
     - name: Download Windows
       uses: actions/download-artifact@v4
       with:
-        path: ssh-agent-wsl-proxy-win-x64
         pattern: ssh-agent-wsl-proxy-win-x64
     - name: Download Linux
       uses: actions/download-artifact@v4
       with:
-        path: ssh-agent-wsl-proxy-linux-x64
         pattern: ssh-agent-wsl-proxy-linux-x64
     - name: List
-      run: ls -R .
+      run: find .
