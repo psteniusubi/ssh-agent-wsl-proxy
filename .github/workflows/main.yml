@@ -1,0 +1,30 @@
+# https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-net
+
+name: Build and Test .NET
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "ssh-agent-wsl-proxy/**"
+      - ".github/workflows/main.yml"
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - "ssh-agent-wsl-proxy/**"
+      - ".github/workflows/main.yml"
+
+jobs:
+  dotnet-build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout GIT
+      uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Restore .NET
+      run: dotnet restore
+    - name: Build .NET
+      run: dotnet build --no-restore
