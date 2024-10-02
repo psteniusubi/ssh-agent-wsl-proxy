@@ -18,22 +18,32 @@ jobs:
   build-linux-x64:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout GIT
+    - name: Linux Checkout GIT
       uses: actions/checkout@v4
-    - name: Setup .NET
+    - name: Linux Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: Build .NET
+    - name: Linux Build .NET
       run: dotnet publish -r linux-x64 -c Release /property:PublishAot=true
+    - name: Linux Upload
+      uses: actions/upload-artifact@v4
+      with:
+        name: ssh-agent-wsl-proxy-linux-x64
+        path: ssh-agent-wsl-proxy/bin/Release/net8.0/linux-x64/native/*
   build-win-x64:
     runs-on: windows-latest
     steps:
-    - name: Checkout GIT
+    - name: Windows Checkout GIT
       uses: actions/checkout@v4
-    - name: Setup .NET
+    - name: Windows Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: Build .NET
+    - name: Windows Build .NET
       run: dotnet publish -r win-x64 -c Release /property:PublishAot=true
+    - name: Windows Upload
+      uses: actions/upload-artifact@v4
+      with:
+        name: ssh-agent-wsl-proxy-win-x64
+        path: ssh-agent-wsl-proxy/bin/Release/net8.0/win-x64/native/*
