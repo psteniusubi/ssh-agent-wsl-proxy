@@ -8,6 +8,7 @@ on:
     paths:
       - "ssh-agent-wsl-proxy/**"
       - ".github/workflows/main.yml"
+    tags: [ "release/*" ]
 
 jobs:
   build-linux-x64:
@@ -43,6 +44,7 @@ jobs:
         name: ssh-agent-wsl-proxy-win-x64
         path: Publish/**
   release:
+    if: github.ref_type == 'tag'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -59,10 +61,10 @@ jobs:
     - name: List
       run: find Publish/
     - name: Package
-      run: tar -C Publish -zcvf ssh-agent-wsl-proxy.tar.gz ssh-agent-wsl-proxy/
+      run: tar -C Publish -zcvf ssh-agent-wsl-proxy-$GITHUB_REF_NAME.tar.gz ssh-agent-wsl-proxy/
     - name: Release
       run: |
         gh release create "$GITHUB_REF_NAME" --draft --title "$GITHUB_REF_NAME" 
-        gh release upload "$GITHUB_REF_NAME" ssh-agent-wsl-proxy.tar.gz
+        gh release upload "$GITHUB_REF_NAME" ssh-agent-wsl-proxy-$GITHUB_REF_NAME.tar.gz
       env:
         GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
