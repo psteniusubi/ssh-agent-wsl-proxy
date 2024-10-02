@@ -1,6 +1,6 @@
 # https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-net
 
-name: Build and Test .NET
+name: Build and Release
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
     paths:
       - "ssh-agent-wsl-proxy/**"
       - ".github/workflows/main.yml"
-    tags: [ "release/*" ]
+    branches: [ "release/*" ]
 
 jobs:
   build-linux-x64:
@@ -44,7 +44,7 @@ jobs:
         name: ssh-agent-wsl-proxy-win-x64
         path: Publish/**
   release:
-    if: github.ref_type == 'tag'
+    if: ${{ ! startsWith(github.ref_name, 'release/') }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
