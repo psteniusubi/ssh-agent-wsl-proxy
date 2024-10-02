@@ -61,6 +61,7 @@ jobs:
     - name: Package
       run: |
         name=`basename $GITHUB_REF_NAME`
+        cp README.md LICENSE ssh-agent-wsl-proxy.service Publish/ssh-agent-wsl-proxy/
         tar -C Publish -zcf ssh-agent-wsl-proxy-$name.tar.gz ssh-agent-wsl-proxy/
     - name: Release
       run: |

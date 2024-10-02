@@ -15,7 +15,7 @@ dotnet publish ssh-agent-wsl-proxy --sc=true -r win-x64 -c Release -o Publish/wi
 ```
 rm -rf $HOME/ssh-agent-wsl-proxy/*
 mkdir -p $HOME/ssh-agent-wsl-proxy
-tar -C Publish -cf - . | tar -C $HOME/ssh-agent-wsl-proxy xf -
+tar -C Publish -cf - . | tar -C $HOME/ssh-agent-wsl-proxy -xf -
 cp ssh-agent-wsl-proxy.service $HOME/ssh-agent-wsl-proxy/
 ```
 
