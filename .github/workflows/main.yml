@@ -49,12 +49,23 @@ jobs:
         path: Publish/**
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     needs: [build-linux-x64, build-win-x64]
     steps:
     - name: Download
       uses: actions/download-artifact@v4
       with:
         pattern: ssh-agent-wsl-proxy-*
+        path: ssh-agent-wsl-proxy
         merge-multiple: true
     - name: List
       run: find .
+    - name: Package
+      run: tar -zcvf ssh-agent-wsl-proxy.tar.gz ssh-agent-wsl-proxy/
+    - name: Release
+      run: |
+        gh release create "$GITHUB_REF_NAME" --draft --title "$GITHUB_REF_NAME" 
+        gh release upload "$GITHUB_REF_NAME" ssh-agent-wsl-proxy.tar.gz
+      env:
+        GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
