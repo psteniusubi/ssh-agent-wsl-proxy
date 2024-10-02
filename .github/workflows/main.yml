@@ -15,7 +15,7 @@ on:
       - ".github/workflows/main.yml"
 
 jobs:
-  dotnet-build:
+  build-linux-x64:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout GIT
@@ -24,7 +24,16 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: Restore .NET
-      run: dotnet restore
     - name: Build .NET
-      run: dotnet build --no-restore
+      run: dotnet publish -r linux-x64 -c Release /property:PublishAot=true
+  build-win-x64:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout GIT
+      uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Build .NET
+      run: dotnet publish -r win-x64 -c Release /property:PublishAot=true
