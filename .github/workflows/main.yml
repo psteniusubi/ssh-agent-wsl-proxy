@@ -4,11 +4,9 @@ name: Build and Release
 
 on:
   push:
-    branches: [ "main" ]
-    paths:
-      - "ssh-agent-wsl-proxy/**"
-      - ".github/workflows/main.yml"
-    branches: [ "release/*" ]
+    branches:
+      - "main"
+      - "release/*"
 
 jobs:
   build-linux-x64:
