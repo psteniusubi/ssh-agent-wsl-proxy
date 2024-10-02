@@ -8,11 +8,6 @@ on:
     paths:
       - "ssh-agent-wsl-proxy/**"
       - ".github/workflows/main.yml"
-  pull_request:
-    branches: [ "main" ]
-    paths:
-      - "ssh-agent-wsl-proxy/**"
-      - ".github/workflows/main.yml"
 
 jobs:
   build-linux-x64:
@@ -53,16 +48,18 @@ jobs:
       contents: write
     needs: [build-linux-x64, build-win-x64]
     steps:
+    - name: Checkout GIT
+      uses: actions/checkout@v4
     - name: Download
       uses: actions/download-artifact@v4
       with:
         pattern: ssh-agent-wsl-proxy-*
-        path: ssh-agent-wsl-proxy
+        path: Publish/ssh-agent-wsl-proxy
         merge-multiple: true
     - name: List
-      run: find .
+      run: find Publish/
     - name: Package
-      run: tar -zcvf ssh-agent-wsl-proxy.tar.gz ssh-agent-wsl-proxy/
+      run: tar -C Publish -zcvf ssh-agent-wsl-proxy.tar.gz ssh-agent-wsl-proxy/
     - name: Release
       run: |
         gh release create "$GITHUB_REF_NAME" --draft --title "$GITHUB_REF_NAME" 
