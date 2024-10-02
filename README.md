@@ -1,12 +1,25 @@
 # SSH agent WSL proxy
 
+## Microsoft OpenSSH
+
+```
+winget install Microsoft.OpenSSH.Beta
+```
+
+### Enable and start ssh-agent service
+
+```
+sc config ssh-agent start= auto
+sc start ssh-agent
+```
+
 ## Download Binaries
 
 ```
 cd $HOME
-wget https://github.com/psteniusubi/ssh-agent-wsl-proxy/releases/download/v0.0.1/ssh-agent-wsl-proxy-v0.0.1.tar.gz
+wget https://github.com/psteniusubi/ssh-agent-wsl-proxy/releases/download/v0.0.2/ssh-agent-wsl-proxy-v0.0.2.tar.gz
 rm -rf $HOME/ssh-agent-wsl-proxy
-tar -zxf ssh-agent-wsl-proxy-v0.0.1.tar.gz
+tar -zxf ssh-agent-wsl-proxy-v0.0.2.tar.gz
 ```
 
 ## Build from Source
@@ -51,7 +64,7 @@ export SSH_AUTH_SOCK
 sudo systemctl restart user@$(id -u).service
 ```
 
-### Create SystemD user service
+### Create and start ssh-agent-wsl-proxy.service
 
 ```
 systemctl --user link $HOME/ssh-agent-wsl-proxy/ssh-agent-wsl-proxy.service

@@ -16,6 +16,7 @@ process {
     $null = $xml.Save($csproj)
 
     Write-Host -ForegroundColor Green @"
+nano README.md
 git commit -a -m "release v$($Version)"
 git push
 git branch "release/v$($Version)"
