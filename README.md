@@ -1,5 +1,12 @@
 # SSH agent WSL proxy
 
+## Overview
+
+SSH agent WSL proxy allows forwaring ssh-agent requests from WSL to a OpenSSH SSH Agent running on the Windows host.
+This way SSH private keys can be stored on the Windows host only. There is no need to copy SSH private keys to WSL.
+
+https://github.com/psteniusubi/ssh-agent-wsl-proxy
+
 ## Microsoft OpenSSH
 
 ```
