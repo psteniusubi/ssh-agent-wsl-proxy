@@ -6,7 +6,7 @@ Type=simple
 Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
 WorkingDirectory=%h/ssh-agent-wsl-proxy
 ExecStartPre=rm -f $SSH_AUTH_SOCK
-ExecStart=%h/ssh-agent-wsl-proxy/ssh-agent-wsl-proxy
+ExecStart=%h/ssh-agent-wsl-proxy/linux-x64/ssh-agent-wsl-proxy
 
 [Install]
 WantedBy=default.target

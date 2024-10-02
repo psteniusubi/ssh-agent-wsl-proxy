@@ -94,7 +94,7 @@ async Task SocketProxy(Socket socket)
     try
     {
         // ssh-agent proxy windows executable
-        var path = args.Length > 1 ? args[1] : "./ssh-agent-wsl-proxy.exe";
+        var path = args.Length > 1 ? args[1] : "./win-x64/ssh-agent-wsl-proxy.exe";
         var info = new ProcessStartInfo
         {
             FileName = path,
