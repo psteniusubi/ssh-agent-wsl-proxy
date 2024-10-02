@@ -42,7 +42,7 @@ jobs:
         name: ssh-agent-wsl-proxy-win-x64
         path: Publish/**
   release:
-    if: ${{ ! startsWith(github.ref_name, 'release/') }}
+    if: ${{ startsWith(github.ref_name, 'release/') }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
