@@ -29,7 +29,7 @@ jobs:
     - name: Linux Upload
       uses: actions/upload-artifact@v4
       with:
-        name: ssh-agent-wsl-proxy
+        name: ssh-agent-wsl-proxy-linux-x64
         path: Publish/**
   build-win-x64:
     runs-on: windows-latest
@@ -45,7 +45,7 @@ jobs:
     - name: Windows Upload
       uses: actions/upload-artifact@v4
       with:
-        name: ssh-agent-wsl-proxy
+        name: ssh-agent-wsl-proxy-win-x64
         path: Publish/**
   release:
     runs-on: ubuntu-latest
@@ -54,7 +54,7 @@ jobs:
     - name: Download
       uses: actions/download-artifact@v4
       with:
-        pattern: ssh-agent-wsl-proxy
+        pattern: ssh-agent-wsl-proxy-*
         merge-multiple: true
     - name: List
       run: find .
