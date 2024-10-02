@@ -61,11 +61,11 @@ jobs:
     - name: Package
       run: |
         name=`basename $GITHUB_REF_NAME`
-        tar -C Publish -zcvf ssh-agent-wsl-proxy-$name.tar.gz ssh-agent-wsl-proxy/
+        tar -C Publish -zcf ssh-agent-wsl-proxy-$name.tar.gz ssh-agent-wsl-proxy/
     - name: Release
       run: |
         name=`basename $GITHUB_REF_NAME`
-        gh release create "$name" --draft --title "$name" 
+        gh release create "$name" --target "$GITHUB_REF_NAME" --draft --title "$name" 
         gh release upload "$name" ssh-agent-wsl-proxy-$name.tar.gz
       env:
         GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
